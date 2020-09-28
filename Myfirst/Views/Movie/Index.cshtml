@@ -1,0 +1,48 @@
+﻿@model List<Myfirst.Models.Movie>
+
+@{
+    ViewBag.Title = "Nishitha Reddy";
+}
+
+@{ 
+    string FullName = "";
+    string FirstName="Nishitha", LastName="Reddy";
+    FullName = FirstName  +  LastName;
+}
+
+    
+
+
+@*<h2>Movie Details</h2>
+<h2><marquee>Movie Name:@Model.Name</marquee></h2>
+<p>Release Date:@Model.Releasedate.ToLongDateString();</p>
+<p>Hero Name:@Model.Hero</p>
+<p>FullName:@FullName</p>*@
+<h2>@Html.ActionLink("Add New Movie", "Create", "Movie", null, new { @class = "btn btn-outline-success" })</h2>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Id</th>
+        <th>Movie Name</th>
+        @*<th>Release Date</th>
+        <th>Hero Name</th>
+        <th>Director Name</th>*@
+        <th>Action(s)</th>|
+        @*<th>@Html.ActionLink("Add New Movie","Create","Movie",null,new {@class="btn btn-outline-success" })</th>*@
+    </tr>
+    @foreach(var movie in Model)
+    {
+        <tr>
+            <td>@movie.Id</td>
+            @*<td>@movie.Name</td>
+            <td>@movie.Releasedate.ToShortDateString()</td>
+            <td>@movie.Hero</td>
+            <td>@movie.DirectorName</td>*@
+            <td>@Html.ActionLink(movie.Name,"Details","Movie",new {id=movie.Id},new { @class="nav-link"})</td>
+            <td>@Html.ActionLink("Edit","Edit","Movie",new { id=movie.Id},new { @class="btn btn-outline-success"}) |
+            @Html.ActionLink("Delete","Details","Movie",new { id=movie.Id},new { @class="btn btn-outline-danger"})</td>
+            
+        </tr>
+    }
+</table>
+
+

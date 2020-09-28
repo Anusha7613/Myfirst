@@ -1,0 +1,24 @@
+﻿@model Myfirst.Models.Customer
+@{
+    ViewBag.Title = "Details";
+}
+@if (Model == null)
+{
+    <label>No records available with this Id</label>
+}
+else
+{
+    <ul class="list-group">
+        <li class="list-group-item">@Model.Name</li>
+        <li class="list-group-item">@Model.DateofBirth</li>
+        
+    </ul>
+}
+<div class="row">
+    <div class="col-md-3 mt-2">
+        @using (Html.BeginForm("Delete", "Customer", new { id = Model.Id }, FormMethod.Post))
+        {
+            <button id="cmdDelete" type="Submit" class="btn btn-outline-danger">Delete</button>
+        }
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿@model Myfirst.Models.MovieViewModel
+@{
+    ViewBag.Title = "CreateNew";
+    <h2>Create New Account For Adding Movie Details</h2>
+    <div class="container">
+        <div class="col-md-6">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+              <div class="form-group">
+                  @Html.LabelFor(m=>m.Movie.Name)<br />
+                  @Html.TextBoxFor(m => m.Movie.Name, new { @class = "form-Control",placeholder="Movie Name" })
+                  @Html.ValidationMessageFor(m=>m.Movie.Name)
+              </div>
+              <div class="form-group">
+                  @Html.LabelFor(m=>m.Movie.DirectorName)<br />
+                  @Html.TextBoxFor(m=>m.Movie.DirectorName,new { @class="form-Control",placeholder="Director Name"})
+                  @Html.ValidationMessageFor(m=>m.Movie.DirectorName)
+              </div>
+              <div class="form-group">
+                  @Html.LabelFor(m=>m.Movie.Hero)<br />
+                  @Html.TextBoxFor(m => m.Movie.Hero, new { @class="form-Control"})
+                  @Html.ValidationMessageFor(m=>m.Movie.Hero)
+              </div>
+              <div class="form-group">
+                  @Html.LabelFor(m => m.Movie.Releasedate)<br />
+                  @Html.TextBoxFor(m => m.Movie.Releasedate, new { @class = "form-Control", type="date" })
+                  @Html.ValidationMessageFor(m=>m.Movie.Releasedate)
+              </div>
+              <div class="form-group">
+                  @Html.LabelFor(m => m.Movie.GenreId)<br />
+                  @*@Html.TextBoxFor(m => m.GenreId, new { @class = "form-Control" })*@
+                  @*@Html.DropDownList("GenreId",ViewBag.GenreId as SelectList,"Select Any One")*@
+                  @Html.DropDownListFor(m=>m.Movie.Genre,new SelectList(Model.GetGenres, "Id", "GenreName"), "--select--", new { @class="form-control"})
+                  @*@Html.DropDownListFor(m=>m.Movie.Genre,new SelectList(Model.GetGenres, "Text", "Value"), "--Select--", new { @class="form-control"})*@
+                  @Html.ValidationMessageFor(m=>m.Movie.GenreId)
+              </div>
+              <div class="form-group">
+                  <button id="CmdCreate" type="Submit" class="btn btn-outline-success">Create</button>
+              </div>
+            }
+        </div>
+    </div>
+}
+
+
+
